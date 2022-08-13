@@ -27,12 +27,7 @@ const registartSession = (numero, socket) => {
             browserWS: '',
             browserArgs: [''],
             addBrowserArgs: [''],
-            puppeteerOptions: {
-                args: [
-                    '--no-sandbox',
-                    '--disable-setuid-sandbox'
-                ]
-            },
+            puppeteerOptions: {},
             disableSpins: true,
             disableWelcome: false,
             updatesLog: true,

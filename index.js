@@ -21,65 +21,65 @@ app.use(express.json({
     extended: true
 }));
 
-app.post("/api/send_whatsapp",(req, res) => {
+app.post("/api/send_whatsapp", (req, res) => {
     const { from, mensaje } = req.body
     try {
-        start(from, mensaje)
-        res.status(200).send("EVENTO RECIVIDO")
+        let respuesta = start(from, mensaje)
+        res.status(200).json(respuesta)
     } catch (error) {
-        res.status(500).send(error)    
+        res.status(500).send(error)
     }
 
 })
 
-app.get("/api/logout", async(req, res) => {
+app.get("/api/logout", async (req, res) => {
     try {
         let respuesta = await Logoutt()
         res.status(200).json(respuesta)
     } catch (error) {
-        res.status(500).json(error)    
+        res.status(500).json(error)
     }
 })
 
-app.get("/api/connect_estado",async(req, res) => {
+app.get("/api/connect_estado", async (req, res) => {
     try {
         let respuesta = await EstaConnectado()
         res.status(200).json(respuesta)
 
     } catch (error) {
-        res.status(500).send(error)    
+        res.status(500).send(error)
     }
 })
 
-app.get("/api/restart_service",async(req, res) => {
+app.get("/api/restart_service", async (req, res) => {
     try {
         let respuesta = await ReiniciarServicio()
         res.status(200).json(respuesta)
 
     } catch (error) {
-        res.status(500).send(error)    
+        res.status(500).send(error)
     }
 })
 
-app.get("/api/version_whatsapp",async(req, res) => {
+app.get("/api/version_whatsapp", async (req, res) => {
     try {
         let respuesta = await ObtenerVersionWhatsapp()
         res.status(200).json(respuesta)
 
     } catch (error) {
-        res.status(500).send(error)    
+        res.status(500).send(error)
     }
 })
-const io = new Server(server,{
+const io = new Server(server, {
     cors: {
-      origin: "*",
-      methods: ["GET", "POST"],
+        origin: "*",
+        methods: ["GET", "POST"],
     },
 })
 
 io.on('connection', async (socket) => {
     console.log(socket.rooms);
-    socket.on('registartSession:',({Numero, user_navegador}) => {
+    socket.on('registartSession:', ({ Numero, user_navegador }) => {
         registartSession(Numero, socket, user_navegador)
     })
 

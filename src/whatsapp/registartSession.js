@@ -47,16 +47,8 @@ const registartSession = (numero, socket) => {
         socket.emit('auth_failure:', '** Error de autentificacion vuelve a generar el QRCODE **');
     });
 }
-function start(from, mensaje) {
-    // client.onMessage((message) => {
-        conexion_ws.sendText(from, mensaje)
-            .then((result) => {
-                console.log('Result: ', result); //return object success
-            })
-            .catch((erro) => {
-                console.error('Error when sending: ', erro); //return object error
-            });
-    // });
+async function start(from, mensaje) {
+    return await conexion_ws.sendText(from, mensaje)
 }
 async function Logoutt() {
     return await conexion_ws.logout()
@@ -77,7 +69,7 @@ async function ObtenerVersionWhatsapp() {
 
 module.exports = {
     registartSession,
-    start, Logoutt ,EstaConnectado, 
+    start, Logoutt, EstaConnectado,
     ReiniciarServicio, ObtenerVersionWhatsapp
 }
 

@@ -12,7 +12,7 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 
 FROM node:alpine
 
-WORKDIR /whatsapp_bot
+WORKDIR /BM-WHATSAPP-VENNOM
 
 
 COPY package*.json ./

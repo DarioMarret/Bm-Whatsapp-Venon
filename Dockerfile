@@ -4,7 +4,7 @@ WORKDIR /BM-WHATSAPP-VENNOM
 
 COPY package*.json ./
 
-RUN sudo apt-get install chromium-browser
+RUN apt-get install chromium-browser
 
 RUN npm install -g npm@
 

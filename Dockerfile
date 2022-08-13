@@ -41,7 +41,8 @@ RUN npm install
 RUN addgroup -S pptruser && adduser -S -G pptruser pptruser \
     && mkdir -p /home/pptruser/Downloads /app \
     && chown -R pptruser:pptruser /home/pptruser \
-    && chown -R pptruser:pptruser /app
+    && chown -R pptruser:pptruser /app \
+    && chown -R pptruser:pptruser /BM-WHATSAPP-VENNOM
 
 USER pptruser
 

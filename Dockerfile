@@ -1,26 +1,16 @@
-FROM ubuntu
-
-RUN apt-get update
-
-RUN apt-get install chromium-browser -y
-
-RUN export DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get install -y tzdata
-
-RUN ln -fs /usr/share/zoneinfo/America/Guayaquil /etc/localtime 
-
-RUN dpkg-reconfigure -f noninteractive tzdata
-
 FROM node:alpine
 
 WORKDIR /BM-WHATSAPP-VENNOM
+
+RUN apk add libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libgbm1 libasound2 libpangocairo-1.0-0 libxss1 libgtk-3-0
 
 COPY package*.json ./
 
 RUN npm install -g npm@
 
 RUN npm install
+
+RUN npm i puppeteer
 
 COPY . .
 

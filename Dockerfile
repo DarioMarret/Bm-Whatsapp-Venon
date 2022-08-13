@@ -2,7 +2,7 @@ FROM node:alpine
 
 WORKDIR /BM-WHATSAPP-VENNOM
 
-RUN apk add libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libgbm1 libasound2 libpangocairo-1.0-0 libxss1 libgtk-3-0
+RUN apk add -y chromium
 
 COPY package*.json ./
 

@@ -71,8 +71,7 @@ app.get("/api/version_whatsapp", async (req, res) => {
     }
 })
 const io = new Server(server, {
-    path: '/whatsapp_a1',
-    serveClient: false,
+    serveClient: true,
     pingInterval: 10000,
     pingTimeout: 5000,
     cookie: false,

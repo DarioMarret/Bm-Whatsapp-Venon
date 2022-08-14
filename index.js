@@ -71,10 +71,6 @@ app.get("/api/version_whatsapp", async (req, res) => {
     }
 })
 const io = new Server(server, {
-    serveClient: true,
-    pingInterval: 10000,
-    pingTimeout: 5000,
-    cookie: false,
     cors: {
         origin: "*",
         methods: ["GET", "POST"],
@@ -86,10 +82,6 @@ io.on('connection', async (socket) => {
     socket.on('registartSession:', ({ Numero, user_navegador }) => {
         registartSession(Numero, socket, user_navegador)
     })
-
-    // socket.on('ConfirmarSession:',({Numero, user_navegador}) => {
-    //     ConfirmarSession(Numero, socket, user_navegador)
-    // })
 
     socket.emit('conexion:', socket.id)
     console.log(`nueva conexion ${socket.id}`);

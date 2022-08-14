@@ -1,18 +1,3 @@
-# FROM node:alpine
-
-# WORKDIR /BM-WHATSAPP-VENNOM
-
-# RUN apk add chromium
-
-# COPY package*.json ./
-
-# RUN npm install -g npm@
-
-# RUN npm install
-
-# COPY . .
-
-# CMD ["npm", "start"]
 FROM alpine
 
 RUN apk add --no-cache \
@@ -39,9 +24,8 @@ RUN npm install puppeteer@13.5.0
 RUN npm install
 
 # RUN addgroup -S pptruser && adduser -S -G pptruser pptruser \
-#     && mkdir -p /home/pptruser/Downloads /app \
+#     && mkdir -p /home/pptruser/Downloads /BM-WHATSAPP-VENNOM \
 #     && chown -R pptruser:pptruser /home/pptruser \
-#     && chown -R pptruser:pptruser /app \
 #     && chown -R pptruser:pptruser /BM-WHATSAPP-VENNOM
 
 # USER pptruser

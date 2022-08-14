@@ -72,7 +72,10 @@ app.get("/api/version_whatsapp", async (req, res) => {
 })
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: [
+            "https://ec.netbot.ec",
+            "http://localhost:3000",
+        ],
         methods: ["GET", "POST"],
     },
 })

@@ -71,6 +71,7 @@ app.get("/api/version_whatsapp", async (req, res) => {
     }
 })
 const io = new Server(server, {
+    path: '/whatsapp_a1/',
     cors: {
         origin: "*",
         methods: ["GET", "POST"],

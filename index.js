@@ -2,16 +2,18 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
-const { Server } = require('socket.io');
-const http = require('http');
+// const { Server } = require('socket.io');
+// const http = require('http');
 const { registartSession, start, Logoutt, ObtenerVersionWhatsapp, ReiniciarServicio, EstaConnectado } = require('./src/whatsapp/registartSession');
 
 
 
-const app = express();
+// const app = express();
 const port = process.env.PORT || 4000
-const server = http.createServer(app)
-
+// const server = http.createServer(app)
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 app.use(cors())
 app.use(morgan('dev'))
@@ -70,12 +72,13 @@ app.get("/api/version_whatsapp", async (req, res) => {
         res.status(500).send(error)
     }
 })
-const io = new Server(server, {
-    cors: {
-        origin: "*",
-        methods: ["GET", "POST"],
-    },
-})
+
+// const io = new Server(server, {
+//     cors: {
+//         origin: "*",
+//         methods: ["GET", "POST"],
+//     },
+// })
 
 io.on('connection', async (socket) => {
     console.log(socket.rooms);
@@ -87,7 +90,7 @@ io.on('connection', async (socket) => {
     console.log(`nueva conexion ${socket.id}`);
 });
 
-server.listen(port, () => {
+http.listen(port, () => {
     console.log(`Server on port ${port}`);
 });
 

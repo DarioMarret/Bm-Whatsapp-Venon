@@ -10,8 +10,10 @@ const { registartSession, start, Logoutt, ObtenerVersionWhatsapp, ReiniciarServi
 const app = express();
 const port = process.env.PORT || 4000
 
-var server = require("http").Server(app);
-var io = require("socket.io")(server);
+var server = require('http').createServer();
+var io = require('socket.io')(server);
+// var server = require("http").Server(app);
+// var io = require("socket.io")(server);
 
 app.use(cors())
 app.use(morgan('dev'))
